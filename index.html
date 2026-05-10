@@ -738,6 +738,17 @@
     font-weight: 500;
     margin: 0 0.1em;
   }
+  .splash-celebration {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(16px, 3.5vw, 24px);
+    font-weight: 400;
+    font-style: italic;
+    color: #f5c97f;
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.65);
+    animation: splashRise 1s 0.7s ease both;
+  }
   .splash-dates {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -1470,6 +1481,9 @@ function Splash({ dismissing, onDismiss }) {
         <div className="splash-fleurish">❦</div>
         <div className="splash-subtitle">
           Elizabeth <span className="amp">&amp;</span> Emery in Europe
+        </div>
+        <div className="splash-celebration">
+          A Celebration on the Way to Sweet Sixteen
         </div>
         <div className="splash-dates">May 22 — June 5</div>
       </div>

@@ -762,16 +762,16 @@
   .splash-tap-hint {
     position: absolute;
     bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: rgba(244, 237, 224, 0.9);
     text-shadow: 0 1px 8px rgba(0,0,0,0.7);
-    animation: splashPulse 2.2s ease infinite, splashRise 1.2s 1s ease both;
-    z-index: 3;
+    animation: splashPulse 2s 1.5s ease infinite;
   }
   @keyframes splashRise {
     from { opacity: 0; transform: translateY(18px); }

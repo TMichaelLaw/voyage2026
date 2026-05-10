@@ -723,7 +723,7 @@
   }
   .splash-subtitle {
     font-family: 'Fraunces', serif;
-    font-size: clamp(20px, 4.5vw, 32px);
+    font-size: clamp(24px, 5.5vw, 38px);
     font-weight: 400;
     font-style: italic;
     color: #faf3e6;
@@ -740,7 +740,7 @@
   }
   .splash-celebration {
     font-family: 'Fraunces', serif;
-    font-size: clamp(16px, 3.5vw, 24px);
+    font-size: clamp(20px, 4.5vw, 30px);
     font-weight: 400;
     font-style: italic;
     color: #f5c97f;
@@ -751,7 +751,7 @@
   }
   .splash-dates {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(13px, 2.5vw, 16px);
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: rgba(244, 237, 224, 0.75);
@@ -1381,12 +1381,8 @@ function renderDesc(text) {
 }
 
 function App() {
-  // Splash visible by default; gets dismissed on tap and remembered for the session.
-  // sessionStorage clears when all browser tabs/PWA windows close, so it returns on a fresh launch.
-  const [splashState, setSplashState] = useState(() => {
-    try { return sessionStorage.getItem('voyageSplashSeen') ? 'gone' : 'visible'; }
-    catch (e) { return 'visible'; }
-  });
+  // Splash visible every time the page loads
+  const [splashState, setSplashState] = useState('visible');
   const [view, setView] = useState({ kind: "phase", id: "sanjuan" });
   const phase = view.kind === "phase" ? PHASES.find(p => p.id === view.id) : PHASES[0];
   const phaseStyle = { "--phase-color": phase.color, "--hero-bg": `url('${phase.heroImg}')` };
@@ -1394,7 +1390,6 @@ function App() {
   const dismissSplash = () => {
     if (splashState !== 'visible') return;
     setSplashState('dismissing');
-    try { sessionStorage.setItem('voyageSplashSeen', '1'); } catch (e) {}
     setTimeout(() => setSplashState('gone'), 500);
   };
 

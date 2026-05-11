@@ -1389,7 +1389,7 @@ const PHASES = [
           { time: "10:00", desc: "Breakfast: **Chocolatería San Ginés** (1894).", tag: "open" },
           { time: "10:30", desc: "Optional: **Museo del Prado** or relaxing strolling and shopping, depending on mental exhaustion from trip." },
           { time: "14:00", desc: "Lunch: **Casa Botín** — oldest restaurant (1725).", tag: "book" },
-          { time: "19:00", desc: "**Bad Bunny concert** — Estadio Cívitas Metropolitano.", tag: "confirmed" },
+          { time: "19:00", desc: "**Bad Bunny concert** — Estadio Riyadh Air Metropolitano.", tag: "confirmed" },
         ],
       },
       {
@@ -1399,8 +1399,7 @@ const PHASES = [
         photoCaption: "Retiro Park",
         blocks: [
           { time: "Morning", desc: "Sleep in. Red Level lounge breakfast." },
-          { time: "11:00-Evening", desc: "**Wildcard day to do whatever**." },
-          { time: "16:00", desc: "Gran Vía · El Rastro · La Latina tapas." },
+          { time: "11:00-Evening", desc: "**Wildcard day to do whatever**. Gran Vía · El Rastro · La Latina tapas." },
           { time: "20:00", desc: "Dinner: **Casa Lucio**." },
         ],
       },
@@ -1433,9 +1432,9 @@ const BAD_BUNNY = {
 };
 
 const DINING = [
-  { date: "May 22", meal: "Dinner", name: "TBD", loc: "Condado, San Juan", status: "open" },
+  { date: "May 22", meal: "Dinner", name: "Cocino al Fondo", loc: "Condado, San Juan", status: "open" },
   { date: "May 23", meal: "Lunch", name: "TBD", loc: "Beachfront or local", status: "open" },
-  { date: "May 23", meal: "Dinner", name: "TBD", loc: "San Juan", status: "open" },
+  { date: "May 23", meal: "Dinner", name: "Verde Mesa", loc: "San Juan", status: "open" },
   { date: "May 24", meal: "Lunch", name: "TBD", loc: "San Juan", status: "open" },
   { date: "May 25", meal: "Dinner", name: "TBD", loc: "Saint-Germain, Paris", status: "open" },
   { date: "May 26", meal: "Pastry", name: "Pâtisserie du Meurice", loc: "Rue de Castiglione", status: "walkin" },
@@ -1444,7 +1443,7 @@ const DINING = [
   { date: "May 27", meal: "Lunch", name: "Le Train Bleu", loc: "Gare de Lyon", status: "confirmed" },
   { date: "May 27", meal: "Dinner", name: "Bistrot des Tournelles", loc: "Le Marais", status: "book" },
   { date: "May 27", meal: "Dessert", name: "Ladurée Champs-Élysées", loc: "Paris", status: "walkin" },
-  { date: "May 28", meal: "Lunch", name: "Chez Pipo", loc: "Vieux-Nice", status: "walkin" },
+  { date: "May 28", meal: "Lunch", name: "Jacques en Terasse", loc: "Vieux-Nice", status: "walkin" },
   { date: "May 28", meal: "Dinner", name: "Olive et Artichaut", loc: "Vieux-Nice", status: "confirmed" },
   { date: "May 29", meal: "Lunch", name: "La Guérite", loc: "Île Ste-Marguerite", status: "confirmed" },
   { date: "May 29", meal: "Dinner", name: "Astoux et Brun", loc: "Cannes", status: "confirmed" },
@@ -1455,16 +1454,15 @@ const DINING = [
   { date: "Jun 1", meal: "Lunch", name: "Il Profumo del Misto", loc: "Ventimiglia", status: "walkin" },
   { date: "Jun 1", meal: "Dinner", name: "TBD — seafront", loc: "Menton", status: "open" },
   { date: "Jun 2", meal: "Snack", name: "Mercado de San Miguel", loc: "Madrid", status: "walkin" },
-  { date: "Jun 2", meal: "Dinner", name: "TBD", loc: "Madrid", status: "open" },
+  { date: "Jun 2", meal: "Dinner", name: "Casa Alberto", loc: "Madrid", status: "open" },
   { date: "Jun 3", meal: "Breakfast", name: "Chocolatería San Ginés", loc: "Madrid", status: "open" },
   { date: "Jun 3", meal: "Lunch", name: "Casa Botín", loc: "Madrid", status: "book" },
   { date: "Jun 4", meal: "Lunch", name: "TBD", loc: "Madrid", status: "open" },
-  { date: "Jun 4", meal: "Dinner", name: "TBD — farewell", loc: "Madrid", status: "open" },
+  { date: "Jun 4", meal: "Dinner", name: "Casa Lucio", loc: "Madrid", status: "open" },
 ];
 
 const TODOS = [
   { item: "Snorkeling excursion", date: "May 23", how: "Research tour operators" },
-  { item: "San Juan restaurants", date: "May 22–24", how: "Research Puerto Rican cuisine" },
   { item: "Musée d'Orsay timed entry", date: "May 26", how: "musee-orsay.fr" },
   { item: "Louvre timed entry", date: "May 26", how: "louvre.fr" },
   { item: "Sainte-Chapelle tickets", date: "May 27", how: "sainte-chapelle.fr" },
@@ -1472,7 +1470,6 @@ const TODOS = [
   { item: "Musée Picasso Antibes", date: "May 29", how: "Check opening hours" },
   { item: "La Guérite ferry", date: "May 29", how: "Confirm Cannes ferry times" },
   { item: "Casa Botín lunch", date: "Jun 3", how: "botin.es / phone" },
-  { item: "Sunday dinner — Paris", date: "May 25", how: "Still researching" },
 ];
 
 const STATUS_LABEL = { confirmed: "Reserved", book: "Book Now", walkin: "Walk-in", open: "Open" };
@@ -1520,7 +1517,10 @@ function App() {
           {PHASES.map(p => (
             <button
               key={p.id}
-              onClick={() => setView({ kind: "phase", id: p.id })}
+              onClick={() => {
+                setView({ kind: "phase", id: p.id });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className={`tab ${view.kind === "phase" && view.id === p.id ? "active" : ""}`}
             >
               {p.label}
@@ -1528,20 +1528,29 @@ function App() {
           ))}
           <div className="nav-divider" />
           <button
-            onClick={() => setView({ kind: "badbunny" })}
+            onClick={() => {
+              setView({ kind: "badbunny" });
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className={`tab utility ${view.kind === "badbunny" ? "active" : ""}`}
             style={{ borderColor: view.kind === 'badbunny' ? '#a8243a' : undefined }}
           >
             Bad Bunny
           </button>
           <button
-            onClick={() => setView({ kind: "dining" })}
+            onClick={() => {
+              setView({ kind: "dining" });
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className={`tab utility ${view.kind === "dining" ? "active" : ""}`}
           >
             Dining Ledger
           </button>
           <button
-            onClick={() => setView({ kind: "todos" })}
+            onClick={() => {
+              setView({ kind: "todos" });
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className={`tab utility ${view.kind === "todos" ? "active" : ""}`}
           >
             Still to Book
@@ -1625,12 +1634,15 @@ function BadBunnyView() {
 
       <div className="bb-bio-wrap">
         <div className="bb-bio">
-          <h3>The biggest artist in the world right now</h3>
+          <h3>The biggest artist in the world</h3>
           <p>
-            <strong>Benito Antonio Martínez Ocasio</strong>, the Puerto Rican rapper and singer who performs as Bad Bunny, was named <strong>Spotify's most-streamed artist globally in 2025</strong>, racking up 19.8 billion streams in a single year.
+            <strong>Benito Antonio Martínez Ocasio</strong> was named <strong>Spotify's most-streamed artist globally in 2025</strong>, racking up 19.8 billion streams in a single year.
           </p>
           <p>
             With this fourth Wrapped #1 (after 2020, 2021, and 2022), he became the only artist ever to claim the top global spot four times — overtaking Taylor Swift, who held it the previous two years.
+          </p>
+          <p>
+            Like it or not, he's <strong>bigger than Drake.</strong>
           </p>
 
           <div className="bb-stats">
@@ -1644,18 +1656,18 @@ function BadBunnyView() {
 
           <h3>The album making history</h3>
           <p>
-            His 2025 album <em>DeBÍ TiRAR MáS FOToS</em> — Spanish for "I should have taken more photos" — became Spotify's #1 global album of 2025 and made him the <strong>first Spanish-language artist</strong> ever to earn Grammy nominations across three of the Big Four categories: Song, Record, and Album of the Year.
+            His 2025 album <em>DeBÍ TiRAR MáS FOToS</em> became Spotify's #1 global album of 2025 and made him the <strong>first Spanish-language artist</strong> ever to earn Grammy nominations across three of the Big Four categories: Song, Record, and Album of the Year.
           </p>
           <p>
-            The record is a love letter to Puerto Rico's cultural roots, blending salsa and plena with his trademark trap and reggaetón. Critics have called it a generational statement on diaspora and place.
+            The record is a love letter to Puerto Rico's cultural roots and a passionate political cry saturated in the blood, sweat, and tears of Puerto Rico's history. Musically, he has blended salsa and plena with his trademark trap and reggaetón. Critics have called it a generational statement on diaspora and place.
           </p>
 
           <h3>Why this concert matters</h3>
           <p>
-            This is the <strong>European leg of his world tour</strong>, his first Spanish stadium dates since 2019. He just finished a historic Puerto Rico residency that drew 500,000 fans, and headlines the Apple Music Super Bowl LX halftime show in February 2026 — the most-watched musical event in the United States.
+            This is the <strong>European leg of his world tour</strong>, his first Spanish stadium dates since 2019. He just finished a historic Puerto Rico residency that drew 500,000 fans, and headlined the Apple Music Super Bowl LX halftime show in February 2026 — the most-watched musical event in the United States, and most globally streamed Super Bowl Halftime Show in history.
           </p>
           <p>
-            Catching him now, in Madrid, on the tour for the album that reclaimed his global throne — that's a generational artist at his absolute peak. Don't take it for granted.
+            Catching him now, in Madrid, on the tour for the album that established his global throne, a generational artist at his absolute peak, is an opportunity that will generate a lifetime of memories.
           </p>
 
           <div className="bb-event">

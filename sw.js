@@ -6,7 +6,7 @@
 // app while online, the old cache is purged and the new files load.
 // =====================================================================
 
-const CACHE_VERSION = 'voyage-v6';
+const CACHE_VERSION = 'voyage-v8';
 
 // Files to pre-cache on install (the shell of the app)
 const CORE_ASSETS = [

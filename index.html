@@ -253,10 +253,36 @@
   .phase-nav-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .phase-nav-special {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .phase-nav-btn.badbunny {
+    background: #a8243a;
+    color: white;
+    border: 1px solid #a8243a;
+    font-weight: 600;
+    padding: 12px 20px;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .phase-nav-btn.badbunny:hover {
+    background: #8b1f32;
+    border-color: #8b1f32;
+    transform: translateY(-1px);
+  }
+
+  .badbunny-icon {
+    font-size: 14px;
   }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
@@ -1129,6 +1155,13 @@
       gap: 6px; 
     }
     .phase-nav-label { font-size: 8px; margin-bottom: 10px; }
+    .phase-nav-special { margin-top: 18px; }
+    .phase-nav-btn.badbunny {
+      font-size: 11px;
+      padding: 10px 16px;
+      gap: 6px;
+    }
+    .badbunny-icon { font-size: 12px; }
   }
 </style>
 </head>
@@ -1493,14 +1526,14 @@ function App() {
               {p.label}
             </button>
           ))}
+          <div className="nav-divider" />
           <button
             onClick={() => setView({ kind: "badbunny" })}
-            className={`tab ${view.kind === "badbunny" ? "active" : ""}`}
+            className={`tab utility ${view.kind === "badbunny" ? "active" : ""}`}
             style={{ borderColor: view.kind === 'badbunny' ? '#a8243a' : undefined }}
           >
             Bad Bunny
           </button>
-          <div className="nav-divider" />
           <button
             onClick={() => setView({ kind: "dining" })}
             className={`tab utility ${view.kind === "dining" ? "active" : ""}`}
@@ -1712,6 +1745,18 @@ function PhaseView({ phase, setView }) {
             </button>
           )}
         </div>
+        {phase.id === "madrid" && (
+          <div className="phase-nav-special">
+            <button
+              className="phase-nav-btn badbunny"
+              onClick={() => setView({ kind: "badbunny" })}
+            >
+              <span className="badbunny-icon">🎤</span>
+              Bad Bunny Concert
+              <span className="arrow">→</span>
+            </button>
+          </div>
+        )}
       </nav>
     </>
   );

@@ -1519,9 +1519,11 @@ function App() {
               key={p.id}
               onClick={() => {
                 setView({ kind: "phase", id: p.id });
-                setTimeout(() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 50);
+                requestAnimationFrame(() => {
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }, 50);
+                });
               }}
               className={`tab ${view.kind === "phase" && view.id === p.id ? "active" : ""}`}
             >
@@ -1532,9 +1534,11 @@ function App() {
           <button
             onClick={() => {
               setView({ kind: "badbunny" });
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 50);
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 50);
+              });
             }}
             className={`tab utility ${view.kind === "badbunny" ? "active" : ""}`}
             style={{ borderColor: view.kind === 'badbunny' ? '#a8243a' : undefined }}
@@ -1544,9 +1548,11 @@ function App() {
           <button
             onClick={() => {
               setView({ kind: "dining" });
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 50);
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 50);
+              });
             }}
             className={`tab utility ${view.kind === "dining" ? "active" : ""}`}
           >
@@ -1555,9 +1561,11 @@ function App() {
           <button
             onClick={() => {
               setView({ kind: "todos" });
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 50);
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 50);
+              });
             }}
             className={`tab utility ${view.kind === "todos" ? "active" : ""}`}
           >

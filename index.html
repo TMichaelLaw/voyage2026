@@ -198,6 +198,67 @@
   }
   .tab.active::before { content: '◆'; color: var(--gold); margin-right: 6px; font-size: 8px; }
 
+  /* Phase navigation at bottom of each itinerary */
+  .phase-nav {
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+    padding: 24px 0;
+    margin-top: 48px;
+    text-align: center;
+  }
+  .phase-nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .phase-nav-btn {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--paper);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .phase-nav-btn:hover {
+    border-color: var(--gold);
+    background: rgba(184,137,58,0.08);
+    transform: translateY(-1px);
+  }
+  .phase-nav-btn.next {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .phase-nav-btn.next:hover {
+    background: #1a1f2a;
+    border-color: var(--gold);
+  }
+  .phase-nav-btn .arrow {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .phase-nav-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
   /* === PHASE HERO — base (Variant A applies background image) === */
@@ -1058,6 +1119,16 @@
     .table .col-loc { display: none; }
     .table td { padding: 12px 6px; }
     .table .col-name { font-size: 15px; }
+
+    /* Phase navigation mobile */
+    .phase-nav { padding: 20px 0; margin-top: 32px; }
+    .phase-nav-buttons { gap: 12px; }
+    .phase-nav-btn { 
+      font-size: 11px; 
+      padding: 8px 14px; 
+      gap: 6px; 
+    }
+    .phase-nav-label { font-size: 8px; margin-bottom: 10px; }
   }
 </style>
 </head>
@@ -1446,7 +1517,7 @@ function App() {
       </nav>
 
       <div className="container">
-        {view.kind === "phase" && <PhaseView phase={phase} />}
+        {view.kind === "phase" && <PhaseView phase={phase} setView={setView} />}
         {view.kind === "badbunny" && <BadBunnyView />}
         {view.kind === "dining" && <DiningView />}
         {view.kind === "todos" && <TodosView />}
@@ -1569,14 +1640,18 @@ function BadBunnyView() {
   );
 }
 
-function PhaseView({ phase }) {
+function PhaseView({ phase, setView }) {
+  const currentIndex = PHASES.findIndex(p => p.id === phase.id);
+  const nextPhase = PHASES[currentIndex + 1];
+  const prevPhase = PHASES[currentIndex - 1];
+
   return (
     <>
       <section className="phase-hero animate" key={phase.id}>
         <div className="hero-image" />
         <div className="hero-vignette" />
         <div className="phase-hero-grid">
-          <div className="phase-marker">Act · {PHASES.findIndex(p => p.id === phase.id) + 1} of {PHASES.length}</div>
+          <div className="phase-marker">Act · {currentIndex + 1} of {PHASES.length}</div>
           <div>
             <div className="phase-name">{phase.name}</div>
             <div className="phase-dates" style={{ color: phase.color }}>
@@ -1614,6 +1689,30 @@ function PhaseView({ phase }) {
           </article>
         ))}
       </section>
+
+      <nav className="phase-nav">
+        <div className="phase-nav-label">Continue the Odyssey</div>
+        <div className="phase-nav-buttons">
+          {prevPhase && (
+            <button
+              className="phase-nav-btn"
+              onClick={() => setView({ kind: "phase", id: prevPhase.id })}
+            >
+              <span className="arrow">←</span>
+              {prevPhase.label}
+            </button>
+          )}
+          {nextPhase && (
+            <button
+              className="phase-nav-btn next"
+              onClick={() => setView({ kind: "phase", id: nextPhase.id })}
+            >
+              {nextPhase.label}
+              <span className="arrow">→</span>
+            </button>
+          )}
+        </div>
+      </nav>
     </>
   );
 }

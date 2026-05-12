@@ -703,7 +703,7 @@
     line-height: 1;
   }
   .footer-button {
-    background: none;
+    background: #87CEEB;
     border: 1px solid var(--ink-faint);
     padding: 8px 16px;
     margin: 8px 0;
@@ -711,15 +711,15 @@
     font-size: 10px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--ink-faint);
+    color: var(--ink);
     cursor: pointer;
     transition: all 0.2s ease;
     border-radius: 4px;
   }
   .footer-button:hover {
-    color: var(--ink);
+    background: #6BB6D6;
     border-color: var(--ink);
-    background: rgba(0, 0, 0, 0.05);
+    color: var(--ink);
   }
 
   @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -1804,7 +1804,11 @@ function PhaseView({ phase, setView }) {
               className="phase-nav-btn"
               onClick={() => {
                 setView({ kind: "phase", id: prevPhase.id });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                requestAnimationFrame(() => {
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }, 50);
+                });
               }}
             >
               <span className="arrow">←</span>
@@ -1816,7 +1820,11 @@ function PhaseView({ phase, setView }) {
               className="phase-nav-btn next"
               onClick={() => {
                 setView({ kind: "phase", id: nextPhase.id });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                requestAnimationFrame(() => {
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }, 50);
+                });
               }}
             >
               {nextPhase.label}

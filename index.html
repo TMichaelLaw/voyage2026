@@ -702,6 +702,25 @@
     margin-bottom: 12px;
     line-height: 1;
   }
+  .footer-button {
+    background: none;
+    border: 1px solid var(--ink-faint);
+    padding: 8px 16px;
+    margin: 8px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+  }
+  .footer-button:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+    background: rgba(0, 0, 0, 0.05);
+  }
 
   @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   .animate { animation: riseIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
@@ -1595,6 +1614,19 @@ function App() {
 
         <footer className="footer">
           <div className="footer-flourish">❦</div>
+          <button 
+            onClick={() => {
+              setView({ kind: "gallery" });
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 50);
+              });
+            }}
+            className="footer-button"
+          >
+            Gallery
+          </button>
           <div>Bon Voyage · Buen Viaje · Buon Viaggio</div>
         </footer>
       </div>

@@ -1182,6 +1182,53 @@
     }
     .badbunny-icon { font-size: 12px; }
   }
+
+  /* ============ GALLERY ============ */
+  .gallery-container {
+    padding: 24px;
+  }
+  .gallery-placeholder {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--cream);
+    border-radius: 12px;
+    border: 2px dashed var(--ink-faint);
+  }
+  .gallery-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .gallery-placeholder h3 {
+    margin: 0 0 8px 0;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+  }
+  .gallery-placeholder p {
+    margin: 0 0 24px 0;
+    color: var(--ink-faint);
+  }
+  .gallery-link-button {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .gallery-link-button:hover {
+    background: #d4a574;
+    transform: translateY(-1px);
+  }
+  .gallery-note {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 16px !important;
+  }
 </style>
 </head>
 <body>
@@ -1915,16 +1962,22 @@ function GalleryView() {
         <div className="panel-sub">Photos from the journey</div>
       </div>
       <div className="gallery-container">
-        <iframe 
-          src="https://www.icloud.com/sharedalbum/#B2JGI9HKKJK73P1"
-          style={{
-            width: '100%',
-            height: '70vh',
-            border: 'none',
-            borderRadius: '8px'
-          }}
-          title="Voyage Photo Gallery"
-        />
+        <div className="gallery-placeholder">
+          <div className="gallery-icon">📸</div>
+          <h3>Photo Gallery</h3>
+          <p>View our complete photo collection from the voyage</p>
+          <a 
+            href="https://www.icloud.com/sharedalbum/#B2JGI9HKKJK73P1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gallery-link-button"
+          >
+            Open Photo Gallery
+          </a>
+          <p className="gallery-note">
+            Opens in a new tab • Updated automatically as new photos are added
+          </p>
+        </div>
       </div>
     </section>
   );

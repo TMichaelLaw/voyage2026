@@ -1885,7 +1885,11 @@ function PhaseView({ phase, setView }) {
               className="phase-nav-btn badbunny"
               onClick={() => {
                 setView({ kind: "badbunny" });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                requestAnimationFrame(() => {
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }, 50);
+                });
               }}
             >
               <span className="badbunny-icon">🎤</span>

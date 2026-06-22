@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyage MMXXVI Minimal</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+:root {
+  --paper: #f4ede0;
+  --ink: #1a1612;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Fraunces', Georgia, serif;
+  min-height: 100vh;
+}
+.masthead {
+  border-bottom: 3px double var(--ink);
+  padding: 28px 32px 18px;
+  text-align: center;
+}
+.masthead-title {
+  font-weight: 900;
+  font-size: clamp(48px, 9vw, 110px);
+  line-height: 0.92;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState } = React;
+
+function App() {
+  return (
+    <div>
+      <header className="masthead">
+        <div className="masthead-title">Voyage MMXXVI</div>
+      </header>
+      <div style={{padding: '40px', textAlign: 'center'}}>
+        <h2>An Atlantic Crossing in Four Acts</h2>
+        <p>May 22 — June 5, 2026</p>
+        <p>✓ App is loading correctly</p>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

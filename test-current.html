@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Test</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+// Test loading the actual data structures from index.html
+const { useState } = React;
+
+function App() {
+  const [status, setStatus] = useState("Loading...");
+  
+  React.useEffect(() => {
+    try {
+      // Test if we can create a simple object structure
+      const testData = {
+        phases: [{id: "test", name: "Test Phase"}],
+        dining: [{date: "May 29", name: "Test Restaurant"}]
+      };
+      setStatus("✓ Data structures work - React is functioning");
+    } catch (error) {
+      setStatus(`✗ Error: ${error.message}`);
+    }
+  }, []);
+
+  return (
+    <div style={{padding: '20px', fontFamily: 'Arial'}}>
+      <h1>Current Version Test</h1>
+      <p>Status: {status}</p>
+      <p>If this shows green, React and basic data structures work.</p>
+      <p>The issue might be with the large data in the main file.</p>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
